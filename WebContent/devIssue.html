@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<pre style="font-size: 20px">
+
+1. 아래의 SampleDataSource를 treeArray로 변경.
+
+SampleDataSource
+var list = [
+  {
+    id: 1,
+    parent: 0
+  }, {
+    id: 2,
+    parent: 1
+  }, {
+    id: 3,
+    parent: 1
+  }, {
+    id: 4,
+    parent: 2
+  }, {
+    id: 5,
+    parent: 2
+  }, {
+    id: 6,
+    parent: 0
+  }, {
+    id: 7,
+    parent: 0
+  }, {
+    id: 8,
+    parent: 7
+  }, {
+    id: 9,
+    parent: 8
+  }, {
+    id: 10,
+    parent: 0
+  }
+];
+
+issue : 부모에게 자식을 추가할 수 있는 멤버 변수 필요. == children 배열을 추가.
+
+var list = [
+  {
+    "id": 1,
+    "parent": 0,
+    "children":{}
+  }, {
+    "id": 2,
+    "parent": 1,
+    "children":{}
+  }, {  
+    "id": 3,
+    "parent": 1,
+    "children":{}
+  }, {
+    "id": 4,
+    "parent": 2,
+    "children":{}
+  }, {
+    "id": 5,
+    "parent": 2,
+    "children":{}
+  }, {
+    "id": 6,
+    "parent": 0,
+    "children":{}
+  }, {
+    "id": 7,
+    "parent": 0,
+    "children":{}
+  }, {
+    "id": 8,
+    "parent": 7,
+    "children":{}
+  }, {
+    "id": 9,
+    "parent": 8,
+    "children":{}
+  }, {
+    "id": 10,
+    "parent": 0,
+    "children":{}
+  }
+];
+
+1-1. 해결 해야할 Issue
+
+Issue : 1, 4의 Issue가 있음.
+Issue NO.1 : 중복 아이디를 제거 한 후, 변환을 하는 것으로 함.
+		중복 아이디를 제거 함 : removeDuplicate 
+Issue NO.4 : Tree array에서 Plat Array로 변경 후 삽입을 하는 것으로 함.
+
+SampleDataSource 변경
+var list = [
+{
+	"id": 1,
+	"parent": 0,
+	"children": [
+		{
+			"id": 2,
+			"parent": 1,
+			"children": [
+				{
+					"id": 3,
+					"parent": 1,
+					"children": []
+				},
+				{
+					"id": 4,
+					"parent": 2,
+					"children": []
+				}
+			]
+		},
+		{
+			"id": 3,
+			"parent": 1,
+			"children": []
+		}
+	]
+},
+{
+	"id": 2,
+	"parent": 1,
+	"children": []
+},
+{
+	"id": 3,
+	"parent": 1,
+	"children": []
+},
+{
+	"id": 4,
+	"parent": 2,
+	"children": []
+},
+{
+	"id": 5,
+	"parent": 2,
+	"children": []
+},
+{
+	"id": 6,
+	"parent": 0,
+	"children": []
+},
+{
+	"id": 7,
+	"parent": 0,
+	"children": []
+},
+{
+	"id": 8,
+	"parent": 7,
+	"children": []
+},
+{
+	"id": 9,
+	"parent": 8,
+	"children": []
+},
+{
+	"id": 10,
+	"parent": 0,
+	"children": []
+},
+{
+	"id": 8,
+	"parent": 7,
+	"children": []
+},
+{
+	"id": 9,
+	"parent": 8,
+	"children": []
+},
+{
+	"id": 10,
+	"parent": 0,
+	"children": []
+}
+];
+
+unpack flow :
+1. list의 길이 만큼 boolean 배열 생성(값은 false)
+2. boolean 배열에 false가 있는 지 확인 (-1 : 종료)
+3. 각 object마다 단말 노드인지 확인 (각 인덱스 결과를 boolean 배열에 변경)
+4. false의 인데스가 있는 경우 해당 노드의 children 갯수 만큼 boolean 배열에 false 추가 후 갯수 만큼 children pop 하여 list에 추가.
+5. 2~4 반복.
+
+removeDuplicate flow :
+
+</pre>
+</body>
+</html>
